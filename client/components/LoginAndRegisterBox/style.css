@@ -14,9 +14,10 @@
   max-width: 40em;
   min-width: 20em;
   width: 40%;
-  min-height: 32em;
-  height: 60%;
   text-align: center;
+  input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 100px white inset;
+  }
 }
 .head {
   text-align: center;

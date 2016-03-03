@@ -6,6 +6,7 @@ import React from 'react'
 import App from './containers/App'
 import Login from './containers/Login'
 import Register from './containers/Register'
+import Developer from './containers/Developer'
 import configure from './store'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -15,7 +16,7 @@ injectTapEventPlugin()
 const store = configure()
 
 const rootRoute = {
-  childRoutes: [Login, Register]
+  childRoutes: [Login, Register, Developer]
 }
 
 console.log(rootRoute);

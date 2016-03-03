@@ -1,0 +1,6 @@
+.canvas_box{
+  max-width: 62em;
+  min-width: 20em;
+  width: 62%;
+  margin: 0 auto;
+}
