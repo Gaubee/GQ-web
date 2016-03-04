@@ -1,6 +1,6 @@
 {
   "name": "gq-web",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "GQ开发人员网络平台服务",
   "main": "index.js",
@@ -39,6 +39,8 @@
   "dependencies": {
     "material-ui": "^0.14.4",
     "raf": "^3.2.0",
+    "react-motion": "^0.4.2",
+    "react-swipeable-views": "^0.4.5",
     "react-tap-event-plugin": "^0.2.2"
   }
 }

@@ -55,10 +55,14 @@ class MyApps extends Component{
                                 right: "1em",
                                 top: "1em",
                             }}>
-                            <RaisedButton label="管理服务"/>
+                            <RaisedButton
+                                label="查看详情"
+                                icon={<FontIcon className="material-icons">settings_overscan</FontIcon>}/>
                         </Badge>
                     </Link>
-                    <RaisedButton label="应用设置" icon={<FontIcon className="material-icons">settings_applications</FontIcon>}/>
+                    <RaisedButton
+                        label="应用设置"
+                        icon={<FontIcon className="material-icons">settings_applications</FontIcon>}/>
                 </CardActions>
             </Card>)
     }

@@ -14,7 +14,9 @@ const {
   MenuItem,
   Avatar,
   Divider,
-  LeftNav
+  LeftNav,
+  Tabs,
+  Tab
 } = MUI;
 const {
     Colors
@@ -51,7 +53,12 @@ export default class DeveloperHead extends Component {
                         <IconButton>
                             <FontIcon className="material-icons">search</FontIcon>
                         </IconButton>
-                    }>
+                    }
+                    style={{
+                        flexWrap: 'wrap'
+                    }}>
+
+                    {this.props.app_bar_children}
                 </AppBar>
 
                 <LeftNav

@@ -27,7 +27,7 @@ const {
   CardActions,
   FlatButton,
   FloatingActionButton,
-  Badge
+  Badge,
 } = MUI;
 
 const {
@@ -56,7 +56,7 @@ class NoFound extends Component{
             <center>
                 <h1 style={{
                     color: Colors.red500
-                }}> ~404~ </h1>
+                }}> 你迷路了QwQ~ </h1>
                 <Link to="/developer">
                     <FloatingActionButton>
                       <FontIcon className="material-icons">find_replace</FontIcon>
@@ -73,12 +73,19 @@ class Developer extends Component {
         this.state = {};
     }
     static childContextTypes = {
-        setAppBarTitle:React.PropTypes.func
+        setAppBarTitle:React.PropTypes.func,
+        setAppBarChildren:React.PropTypes.func,
     };
     getChildContext(){
         return {
             setAppBarTitle:(new_title)=> {
                 this.setState(Object.assign(this.state, {title:new_title}))
+            },
+            setAppBarChildren:(children)=>{
+                this.setState({
+                    ...this.state,
+                    app_bar_children:children
+                });
             }
         }
     }
@@ -86,7 +93,7 @@ class Developer extends Component {
         const children_view = this.props.children_view;
         return (
             <AppCanvas>
-                <DeveloperHead title={this.state.title||"我的应用"}>
+                <DeveloperHead title={this.state.title||"我的应用"} app_bar_children={this.state.app_bar_children}>
                 </DeveloperHead>
                 <div className={style.canvas_box}>
                     { children_view  || <MyAppsComponent />}
