@@ -123,7 +123,7 @@ class MyAppDetail extends Component {
       });
   }
   componentWillMount() {
-    this.context.setAppBarTitle("QAQ 应用详情页")
+    this.context.setAppBarTitle("QAQ 应用详情")
     this.changeTabIndexValue(0);
       /*
       <FontIcon className="material-icons">info_outline</FontIcon>

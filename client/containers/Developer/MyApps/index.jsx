@@ -39,7 +39,7 @@ class MyApps extends Component{
         return (
             <Card style={{
                     marginTop: '-4em',
-                    zIndex: 1200,
+                    zIndex: 1101, // 比AppBar的层级多1
                     position: 'relative',
                     marginRight: '0.5em',
                     marginLeft: '0.5em',

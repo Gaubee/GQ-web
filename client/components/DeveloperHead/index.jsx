@@ -1,7 +1,7 @@
 import {Router, Route, Link, browserHistory, hashHistory} from 'react-router'
 import MUI from 'material-ui'
 import React, {Component} from 'react'
-import style from './style.css'
+import styles from './style.css'
 
 const {
   AppCanvas,
@@ -57,11 +57,15 @@ export default class DeveloperHead extends Component {
                 <AppBar
                     title={this.props.title||"开发者中心"}
                     iconElementLeft={
-                        <IconButton>
-                            <FontIcon onClick={::this.toggleNav} className="material-icons" >menu</FontIcon>
+                        this.props.left
+                        ||
+                        <IconButton onClick={::this.toggleNav}>
+                            <FontIcon className="material-icons" >menu</FontIcon>
                         </IconButton>
                     }
                     iconElementRight={
+                        this.props.right
+                        ||
                         <IconButton>
                             <FontIcon className="material-icons">search</FontIcon>
                         </IconButton>
@@ -70,7 +74,7 @@ export default class DeveloperHead extends Component {
                         flexWrap: 'wrap'
                     }}>
 
-                    {this.props.app_bar_children}
+                    {this.props.children}
                 </AppBar>
 
                 <LeftNav

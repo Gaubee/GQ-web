@@ -1,6 +1,6 @@
 {
   "name": "gq-web",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "private": true,
   "description": "GQ开发人员网络平台服务",
   "main": "index.js",

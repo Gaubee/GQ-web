@@ -7,6 +7,7 @@ import DeveloperHead from '../../components/DeveloperHead'
 
 import MyApps from "./MyApps"
 import MyAppDetail from "./MyAppDetail"
+import AppRouter from "./AppRouter"
 import raf from "raf";
 const MyAppsComponent = MyApps.component;
 
@@ -75,25 +76,44 @@ class Developer extends Component {
     static childContextTypes = {
         setAppBarTitle:React.PropTypes.func,
         setAppBarChildren:React.PropTypes.func,
+        setAppBarLeft:React.PropTypes.func,
+        setAppBarRight:React.PropTypes.func,
     };
     getChildContext(){
         return {
-            setAppBarTitle:(new_title)=> {
-                this.setState(Object.assign(this.state, {title:new_title}))
-            },
-            setAppBarChildren:(children)=>{
-                this.setState({
-                    ...this.state,
-                    app_bar_children:children
-                });
-            }
+          setAppBarTitle: (new_title) => {
+            this.setState(Object.assign(this.state, {title: new_title}))
+          },
+          setAppBarChildren: (children) => {
+            this.setState({
+              ...this.state,
+              app_bar_children: children
+            });
+          },
+          setAppBarLeft: (node) => {
+            this.setState({
+              ...this.state,
+              app_bar_left: node
+            })
+          },
+          setAppBarRight: (node) => {
+            this.setState({
+              ...this.state,
+              app_bar_right: node
+            })
+          }
         }
     }
     render() {
         const children_view = this.props.children_view;
         return (
             <AppCanvas>
-                <DeveloperHead title={this.state.title||"我的应用"} app_bar_children={this.state.app_bar_children}>
+                <DeveloperHead
+                    title={this.state.title}
+                    children={this.state.app_bar_children}
+                    left={this.state.app_bar_left}
+                    right={this.state.app_bar_right}
+                    >
                 </DeveloperHead>
                 <div className={style.canvas_box}>
                     { children_view  || <MyAppsComponent />}
@@ -121,6 +141,11 @@ export default {
       path: MyAppDetail.path,
       components: {
         children_view: MyAppDetail.component
+      }
+    }, {
+      path: AppRouter.path,
+      components: {
+        children_view: AppRouter.component
       }
     }, {
       path: ":no_found",
