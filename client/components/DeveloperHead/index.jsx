@@ -1,3 +1,4 @@
+import {Router, Route, Link, browserHistory, hashHistory} from 'react-router'
 import MUI from 'material-ui'
 import React, {Component} from 'react'
 import style from './style.css'
@@ -34,6 +35,17 @@ export default class DeveloperHead extends Component {
             open_nav: false
         }
     }
+    static contextTypes = {
+      router: React.PropTypes.object.isRequired
+    };
+
+    linkTo(url){
+        return ()=> {
+            this.context.router.push(url)
+            this.toggleNav()
+        }
+    }
+
     toggleNav(){
         this.setState({
             open_nav: !this.state.open_nav
@@ -89,7 +101,7 @@ export default class DeveloperHead extends Component {
                                     <br/>
                                     <p style={{
                                             fontSize: "0.7em",
-                                            color: Colors.grey300,
+                                            color: Colors.grey200,
                                         }}>
                                         QAQAQQAAQAQ
                                     </p>
@@ -108,6 +120,7 @@ export default class DeveloperHead extends Component {
                     </AppBar>
                     <MenuItem
                         primaryText="我的应用"
+                        onTouchTap={this.linkTo('/developer')}
                         leftIcon={
                             <FontIcon className="material-icons">apps</FontIcon>
                         }>

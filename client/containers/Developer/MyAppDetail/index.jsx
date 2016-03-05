@@ -2,6 +2,9 @@ import {Router, Route, Link, browserHistory, hashHistory} from 'react-router'
 import MUI from 'material-ui'
 import React, {Component} from 'react'
 import SwipeableViews from 'react-swipeable-views'
+import ReactDOM  from 'react-dom'
+
+import _styles from './style.css'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -38,17 +41,21 @@ const {
 } = Styles;
 
 const styles = {
-  CardText: {
-    backgroundColor: Colors.grey300
-  },
-  SwipeableViews: {},
-  SwipeableViewsItem: {
-    minHeight: '100%',
-  },
-  ListPrimaryText: {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
-  }
+    CardText: {
+        backgroundColor: Colors.grey300
+    },
+    SwipeableViews: {},
+    SwipeableViewsItem: {
+        height: 'calc(100% - 3em)',
+    },
+    ListPrimaryText: {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
+    },
+    tabWithSticky:{
+        position: 'fixed',
+        top: 0,
+    }
 };
 
 
@@ -82,14 +89,30 @@ class MyAppDetail extends Component {
     this.context.setAppBarTitle(Math.random().toString(36).substr(2))
   }
   changeTabIndexValue(index_value){
+      const self = this;
+//,height:'3em'
     this.context.setAppBarChildren(
-      <Tabs onChange={::this.changeTabIndexValue} value={index_value} style={{
-        width: '100%'
-      }}>
+    <div style={{width:'100%',height:'3em'}}>
+      <Tabs ref={
+            (node)=>{
+                if (!this._tabNode) {
+                    var tabNode = this._tabNode = ReactDOM.findDOMNode(node)
+                    var _tabNode_offsetTop = tabNode.offsetTop
+                    document.addEventListener('scroll', this._tabNodeOnScroll = (e) => {
+                        if(window.scrollY >= _tabNode_offsetTop){
+                            tabNode.classList.add('fixed')
+                        }else{
+                            tabNode.classList.remove('fixed')
+                        }
+                    });
+                }
+            }
+        }  onChange={::this.changeTabIndexValue} value={index_value} style={{width:'100%',position:'absolute',left:0}}>
         <Tab value={0} label="日志信息"></Tab>
         <Tab value={1} label="路由"></Tab>
         <Tab value={2} label="组件"></Tab>
       </Tabs>
+    </div>
     )
     this.changeIndexValue(index_value)
   }
@@ -108,6 +131,9 @@ class MyAppDetail extends Component {
       <FontIcon className="material-icons">settings_input_component</FontIcon>QAQ3
       */
   }
+  componentWillUnmount(){
+      document.removeEventListener('scroll', this._tabNodeOnScroll);
+  }
   render() {
     const params = this.props.params;
     const handleActive = ()=>{
@@ -122,10 +148,10 @@ class MyAppDetail extends Component {
     console.log("params:", params);
     return (
         <SwipeableViews style={styles.SwipeableViews} containerStyle={styles.SwipeableViewsItem} onChangeIndex={::this.changeTabIndexValue} index={this.state.index_value}>
-            <div onClick={()=>this.changeIndexValue(0)} zDepth={1}>
-                <pre style={{
-                        height:'100%'
-                    }}>
+            <div style={{
+                    margin: '0.5em 0.5em',
+                }}  zDepth={1}>
+                <pre>
                     {
 `┌ 开始安装Web层服务
 │ ┌ [router-install]
@@ -152,7 +178,9 @@ class MyAppDetail extends Component {
                 </pre>
 
             </div>
-            <Paper onClick={()=>this.changeIndexValue(1)} zDepth={1}>
+            <Paper style={{
+                    margin: '0.5em 0.5em',
+                }}  zDepth={1}>
                 <Card>
                     <CardHeader
                         title="Gaubee"
@@ -261,11 +289,13 @@ class MyAppDetail extends Component {
 
                 </Card>
             </Paper>
-            <Paper onClick={()=>this.changeIndexValue(2)} zDepth={1}>
+            <Paper style={{
+                    margin: '0.5em 0.5em',
+                }}  zDepth={1}>
                 <Card>
                     <CardHeader
                         title="Gaubee"
-                        subtitle="v1.2.36 MYMACID:AASD:SDAS:SDA:CSPO"
+                        subtitle={<div><b>v1.2.36</b> — MYMACID:AASD:SDAS:SDA:CSPO</div>}
                         actAsExpander={true}
                         showExpandableButton={true}
                         initiallyExpanded={true}

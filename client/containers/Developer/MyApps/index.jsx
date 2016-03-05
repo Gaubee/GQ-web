@@ -27,9 +27,23 @@ const {
 
 
 class MyApps extends Component{
+    static contextTypes = {
+      setAppBarTitle: React.PropTypes.func,
+      setAppBarChildren: React.PropTypes.func,
+    };
+    componentWillMount(){
+        this.context.setAppBarTitle("我的应用")
+        this.context.setAppBarChildren(<div style={{width:'100%',height:'4em'}}></div>)
+    }
     render(){
         return (
-            <Card>
+            <Card style={{
+                    marginTop: '-4em',
+                    zIndex: 1200,
+                    position: 'relative',
+                    marginRight: '0.5em',
+                    marginLeft: '0.5em',
+                }}>
                 <CardHeader
                     title="My App-Name"
                     subtitle="简单的介绍"
