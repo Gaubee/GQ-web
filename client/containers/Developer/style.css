@@ -1,7 +1,77 @@
-.canvas_box{
-  max-width: 62em;
-  min-width: 20em;
-  width: 62%;
+.canvas_box {
+  min-width: 320px;
   margin: 0 auto;
   min-height: 100%;
+}
+@media only screen and (min-width: 320px) {
+
+  /* Small screen, non-retina */
+  .canvas_box{
+    width: 100%;
+  }
+
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 320px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (                min-resolution: 192dpi) and (min-width: 320px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 320px) {
+
+  /* Small screen, retina, stuff to override above media query */
+  .canvas_box{
+    width: 100%;
+  }
+
+}
+
+@media only screen and (min-width: 600px) {
+
+  /* Medium screen, non-retina */
+  .canvas_box{
+    min-width: 600px;
+    width: 62%;
+  }
+
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 600px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 600px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 600px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 600px),
+only screen and (                min-resolution: 192dpi) and (min-width: 600px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 600px) {
+
+  /* Medium screen, retina, stuff to override above media query */
+  .canvas_box{
+    min-width: 600px;
+    width: 62%;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+
+  /* Large screen, non-retina */
+  .canvas_box{
+    width: 62%;
+    max-width: 992px; /* 1600 * 0.62*/
+  }
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 1440px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 1440px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 1440px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 1440px),
+only screen and (                min-resolution: 192dpi) and (min-width: 1440px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 1440px) {
+
+  /* Large screen, retina, stuff to override above media query */
+  .canvas_box{
+    width: 62%;
+    max-width: 992px; /* 1600 * 0.62*/
+  }
 }
